@@ -2,8 +2,9 @@ package test
 
 import (
 	"log"
-	"test/60-数据库编程/model"
 	"testing"
+
+	"github.com/tzr2020/go-review/60-数据库编程/model"
 )
 
 func TestUser(t *testing.T) {

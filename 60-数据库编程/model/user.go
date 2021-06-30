@@ -2,7 +2,8 @@ package model
 
 import (
 	"log"
-	"test/60-数据库编程/utils"
+
+	"github.com/tzr2020/go-review/60-数据库编程/utils"
 )
 
 type User struct {
