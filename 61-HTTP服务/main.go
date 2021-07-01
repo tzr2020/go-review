@@ -67,12 +67,49 @@ func tmpl(w http.ResponseWriter, r *http.Request) {
 	t2.ExecuteTemplate(w, "home.html", nil)
 }
 
+func cookie(w http.ResponseWriter, r *http.Request) {
+	c1 := http.Cookie{
+		Name:     "username",
+		Value:    "zhangsan",
+		HttpOnly: true,
+	}
+
+	c2 := http.Cookie{
+		Name:     "password",
+		Value:    "123456",
+		HttpOnly: true,
+	}
+
+	// 响应报文设置cookie
+
+	// 响应报文设置头部字段Set-Cookie，添加一个cookie
+	// w.Header().Set("Set-Cookie", c1.String())
+	// 再添加一个cookie
+	// w.Header().Add("Set-Cookie", c2.String())
+
+	http.SetCookie(w, &c1)
+	http.SetCookie(w, &c2)
+
+	// 从请求报文获取cookie
+
+	// 获取所有cookie
+	cs := r.Cookies()
+	fmt.Fprintln(w, "cookies:", cs)
+
+	// 获取指定名字的cookie
+	username, _ := r.Cookie("username")
+	password, _ := r.Cookie("password")
+	fmt.Fprintln(w, "cookie:", username)
+	fmt.Fprintln(w, "cookie:", password)
+}
+
 func main() {
 	// 设置路由，为指定路径的请求选择处理器来处理请求
 	http.HandleFunc("/index", index)
 	http.HandleFunc("/readBody", readBody)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/tmpl", tmpl)
+	http.HandleFunc("/cookie", cookie)
 
 	// 启动服务器，监听端口，使用默认的多路复用器分发请求
 	http.ListenAndServe(":8080", nil)
