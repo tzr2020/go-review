@@ -110,6 +110,9 @@ func main() {
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/tmpl", tmpl)
 	http.HandleFunc("/cookie", cookie)
+	// 静态文件服务
+	http.Handle("/static/", http.StripPrefix("/static",
+		http.FileServer(http.Dir("view/static"))))
 
 	// 启动服务器，监听端口，使用默认的多路复用器分发请求
 	http.ListenAndServe(":8080", nil)
