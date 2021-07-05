@@ -6,6 +6,21 @@ import (
 	"net/http"
 )
 
+func main() {
+	// 设置路由，为指定路径的请求选择处理器来处理请求
+	http.HandleFunc("/index", index)
+	http.HandleFunc("/readBody", readBody)
+	http.HandleFunc("/login", login)
+	http.HandleFunc("/tmpl", tmpl)
+	http.HandleFunc("/cookie", cookie)
+	// 静态文件服务
+	http.Handle("/static/", http.StripPrefix("/static",
+		http.FileServer(http.Dir("view/static"))))
+
+	// 启动服务器，监听端口，使用默认的多路复用器分发请求
+	http.ListenAndServe(":8080", nil)
+}
+
 func index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Hello, world!")
 
@@ -38,8 +53,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 		/*
 			获取请求参数
-			1.查询字符串
-			2.请求主体
+			1.查询字符串参数
+			2.HTML表单参数
 		*/
 		r.ParseForm()
 		fmt.Fprintln(w, "Form:", r.Form)
@@ -101,19 +116,4 @@ func cookie(w http.ResponseWriter, r *http.Request) {
 	password, _ := r.Cookie("password")
 	fmt.Fprintln(w, "cookie:", username)
 	fmt.Fprintln(w, "cookie:", password)
-}
-
-func main() {
-	// 设置路由，为指定路径的请求选择处理器来处理请求
-	http.HandleFunc("/index", index)
-	http.HandleFunc("/readBody", readBody)
-	http.HandleFunc("/login", login)
-	http.HandleFunc("/tmpl", tmpl)
-	http.HandleFunc("/cookie", cookie)
-	// 静态文件服务
-	http.Handle("/static/", http.StripPrefix("/static",
-		http.FileServer(http.Dir("view/static"))))
-
-	// 启动服务器，监听端口，使用默认的多路复用器分发请求
-	http.ListenAndServe(":8080", nil)
 }

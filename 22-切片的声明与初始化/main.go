@@ -4,17 +4,19 @@ import "fmt"
 
 func main() {
 	// 切片的声明与初始化
-	// var s []int
+	// var s []int        // 未分配内存
+	// s = make([]int, 3) // 分配内存
 	// s := make([]int, 3)
 	// s = []int{1, 2, 3}
 	// var s []int = []int{1, 2, 3}
+	// var s = []int{1, 2, 3}
 	s := []int{1, 2, 3}
 
 	fmt.Printf("s, value: %v, type: %T\n", s, s)
 
 	// 遍历切片
 	// for i := 0; i < len(s); i++ {
-	// 	fmt.Printf("index: %v, value: %v\n", i, s[i])
+	// 	fmt.Printf("index: %v, value: %v\n", i, s[i]) // 通过索引访问数组的元素
 	// }
 
 	for k, v := range s {

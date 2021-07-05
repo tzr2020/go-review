@@ -7,14 +7,15 @@ func main() {
 	// var a [3]int
 	// a = [3]int{1, 2, 3}
 	// var a [3]int = [3]int{1, 2, 3}
+	// var a = [3]int{1, 2, 3}
 	// a := [3]int{1, 2, 3}
-	a := [...]int{1, 2, 3}
+	a := [...]int{1, 2, 3} // 自动计算数组长度
 
 	fmt.Printf("a, value: %v, type: %T\n", a, a)
 
 	// 遍历数组
 	// for i := 0; i < len(a); i++ {
-	// 	fmt.Printf("index: %v, value: %v\n", i, a[i])
+	// 	fmt.Printf("index: %v, value: %v\n", i, a[i]) // 通过索引访问数组的元素
 	// }
 
 	for k, v := range a {

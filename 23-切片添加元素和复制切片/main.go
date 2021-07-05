@@ -17,7 +17,7 @@ func main() {
 	fmt.Printf("s, value: %v, type: %T\n", s, s)
 
 	// 复制切片
-	s3 := make([]int, len(s))
+	s3 := make([]int, len(s)) // 给新切片变量分配内存，不与原切片变量共享内存
 	copy(s3, s)
 	fmt.Printf("s3, addr: %p, value: %v, type: %T\n", s3, s3, s3)
 
