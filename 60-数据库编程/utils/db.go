@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	DB  *sql.DB
+	DB  *sql.DB // 操作数据库实例
 	err error
 )
 

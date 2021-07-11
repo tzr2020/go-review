@@ -33,8 +33,7 @@ func main() {
 			Age:  12,
 		},
 	}
-
-	s.Person.Say()
-
 	s.Say()
+
+	// s.Person.Say()
 }

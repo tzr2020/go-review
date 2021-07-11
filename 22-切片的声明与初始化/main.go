@@ -40,4 +40,8 @@ func change(s []int) {
 	for i := 0; i < len(s); i++ {
 		s[i] += 10
 	}
+
+	// for _, v := range s {
+	// 	v += 10
+	// }
 }
